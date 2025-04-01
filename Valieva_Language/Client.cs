@@ -76,8 +76,7 @@ namespace Valieva_Language
             }
         }
 
-        public int countOfJoins
-        {
+        public int countOfJoinsc   {
             get
             {
                 try
