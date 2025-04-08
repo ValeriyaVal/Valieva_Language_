@@ -109,9 +109,12 @@ namespace Valieva_Language
             {
                 try
                 {
-                    var addr = new System.Net.Mail.MailAddress(_currentClient.Email);
-                    if (addr.Address != _currentClient.Email)
-                        throw new Exception();
+                    string emailPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$";
+                    if (!Regex.IsMatch(_currentClient.Email, emailPattern))
+                        errors.AppendLine("Некорректный Email!");
+                    //var addr = new System.Net.Mail.MailAddress(_currentClient.Email);
+                    //if (addr.Address != _currentClient.Email)
+                    //    throw new Exception();
                 }
                 catch
                 {
@@ -124,7 +127,7 @@ namespace Valieva_Language
                 errors.AppendLine("Телефон не может быть пустым.");
             else
             {
-                string phonePattern = @"^[0-9() -]+$";
+                string phonePattern = @"^\+?\d[\d\-\(\)\s]+$";
                 if (!Regex.IsMatch(_currentClient.Phone, phonePattern))
                     errors.AppendLine("Телефон может содержать только цифры, плюс, минус, скобки и пробелы.");
             }
@@ -189,8 +192,11 @@ namespace Valieva_Language
 
             if (myOpenFileDialog.ShowDialog() == true)
             {
+                var relativePathIs1 = Regex.Split(myOpenFileDialog.FileName, @"C:\\Users\\Gulnaz\\Documents\\3 курс учеба\\программирование\\Языковая школа\\Сессия 1\\clients_import\\");
+                _currentClient.PhotoPath = relativePathIs1[1];
+                Photo.Source = new BitmapImage(new Uri(myOpenFileDialog.FileName));
 
-                FileInfo fileInfo = new FileInfo(myOpenFileDialog.FileName);
+                /*FileInfo fileInfo = new FileInfo(myOpenFileDialog.FileName);
 
 
                 if (fileInfo.Length < 2 * 1024 * 1024)
@@ -202,8 +208,9 @@ namespace Valieva_Language
                 {
 
                     MessageBox.Show("Размер файла превышает 2 мегабайта. Выберите другой файл.");
-                }
+                }*/
             }
         }
+
     }
 }

@@ -1,3 +1,4 @@
+//Client.cs
 namespace Valieva_Language
 {
     using System;
@@ -78,7 +79,8 @@ namespace Valieva_Language
             }
         }
 
-        public int countOfJoinsc   {
+        public int countOfJoinsc
+        {
             get
             {
                 try

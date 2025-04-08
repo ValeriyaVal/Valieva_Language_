@@ -181,16 +181,6 @@
     <Resource Include="school_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ValModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ValModel.Context.cs</LastGenOutput>
-      <DependentUpon>ValModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="ValModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ValModel.edmx</DependentUpon>
-      <LastGenOutput>ValModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="Клиенты\picture.png" />
     <Resource Include="Клиенты\1.jpg" />
     <Resource Include="Клиенты\10.jpg" />
@@ -295,6 +285,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ValModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ValModel.edmx</DependentUpon>
+      <LastGenOutput>ValModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ValModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ValModel.edmx</DependentUpon>
+      <LastGenOutput>ValModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -32,15 +32,12 @@ namespace Valieva_Language
             InitializeComponent();
             var currentClients = ValievaLanguageEntities.GetContext().Client.ToList();
             ClientListView.ItemsSource = currentClients;
-            //ComboPage.Items.Add("10");
-            //ComboPage.Items.Add("50");
-            //ComboPage.Items.Add("200");
-            //ComboPage.Items.Add("Все");
             ComboPage.SelectedIndex = 0; // По умолчанию 10 записей
             UpdateClients();
             ComboGender.SelectedIndex = 0;
             ComboSort.SelectedIndex = 0;
 
+            this.Loaded += ClientPage_Loaded;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -270,14 +267,17 @@ namespace Valieva_Language
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Client));
-            UpdateClients();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddEditPage(null));
-            UpdateClients();
 
         }
+        private void ClientPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateClients();
+        }
+
     }
 }

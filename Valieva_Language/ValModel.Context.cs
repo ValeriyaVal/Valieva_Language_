@@ -19,16 +19,14 @@ namespace Valieva_Language
             : base("name=ValievaLanguageEntities")
         {
         }
-
         private static ValievaLanguageEntities _context;
-
         public static ValievaLanguageEntities GetContext()
         {
             if (_context == null)
                 _context = new ValievaLanguageEntities();
             return _context;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
