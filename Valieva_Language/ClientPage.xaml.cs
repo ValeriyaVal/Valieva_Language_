@@ -21,6 +21,7 @@ namespace Valieva_Language
     public partial class ClientPage : Page
     {
         int CountRecords;
+        int ClientCount;
         int CountPage;
         int CurrentPage;
         int RecordsPerPage = 10;
@@ -79,6 +80,8 @@ namespace Valieva_Language
         private void UpdateClients()
         {
             var currentClients = ValievaLanguageEntities.GetContext().Client.ToList();
+            ClientCount = currentClients.Count;
+            TBAllRecords.Text = " из " + ClientCount.ToString();
 
             currentClients = currentClients.Where (p => p.LastName.ToLower().Contains(TBSearch.Text.ToLower()) || p.FirstName.ToLower().Contains(TBSearch.Text.ToLower()) || p.Patronymic.ToLower().Contains(TBSearch.Text.ToLower()) || p.Email.ToLower().Contains(TBSearch.Text.ToLower()) || p.Phone.Replace("+", "").Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "").ToLower().Contains(TBSearch.Text.Replace("+", "").Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "").ToLower())).ToList();
 
@@ -128,20 +131,12 @@ namespace Valieva_Language
 
             }
 
-            //currentClients = currentClients.Where(
-
-            ////для отображения итогов фильтра и поиска в листвью
-            //ServiceListView.ItemsSource = currentClients.ToList();
-
-
-
             ClientListView.ItemsSource = currentClients;
             //
             ClientListView.Items.Refresh();
             TableList = currentClients;
-            //
-            //
-            //
+            CountRecords = TableList.Count;
+
             ChangePage(0, 0);
 
 
@@ -242,7 +237,6 @@ namespace Valieva_Language
 
                 min = Math.Min(CurrentPage * RecordsPerPage + RecordsPerPage, CountRecords);
                 TBCount.Text = CountRecords.ToString();
-                TBAllRecords.Text = " из " + CountRecords.ToString();
 
                 ClientListView.ItemsSource = CurrentPageList;
                 ClientListView.Items.Refresh();
@@ -275,13 +269,14 @@ namespace Valieva_Language
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-   //         Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Client));
-
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Client));
+            UpdateClients();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-//            Manager.MainFrame.Navigate(new AddEditPage(null));
+            Manager.MainFrame.Navigate(new AddEditPage(null));
+            UpdateClients();
 
         }
     }

@@ -53,6 +53,11 @@
                         <Image Width="200" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center" Grid.RowSpan="5">
                             <Image.Source>
                                 <Binding Path="PhotoPath">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>
+                                        Клиенты/picture.png
+                                        </ImageSource>
+                                    </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>
                         </Image>
